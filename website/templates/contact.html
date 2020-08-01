@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Contact Dr. Noble {% endblock %}
+
+{% block content %}
+
+  <!-- ***** Breadcrumb Area Start ***** -->
+  <div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url({% static 'website/img/bg-img/12.jpg' %});">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12">
+          <h2 class="title">Contact</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="breadcumb--con">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="fa fa-home"></i> Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Contact</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Breadcrumb Area End ***** -->
+  
+  <!-- ***** Contact Area Start ***** -->
+  {% if message_name %} <!-- if there is message_name(that means that someone posted data in the form) -->
+    <center>
+      <h2> Thanks {{ message_name }} </h2> <!-- we use message name in the template using double curly brackets. it is the same name that was picked up in the form -->
+      <p> We received your email and we shall repsond to it shortly .....</p>
+   </center>
+
+  {% else %}
+  <section class="dento-contact-area mt-50 mb-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="google-maps mb-100">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.747511610474!2d32.58223051441184!3d0.3413540997509537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbba84e9ede3d%3A0x8c4a55f05dad9f33!2sTHETA%20Uganda!5e0!3m2!1sen!2suk!4v1596116174048!5m2!1sen!2suk"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Contact Information -->
+        <div class="col-12 col-md-4">
+          <div class="contact-information">
+            <h5>Address</h5>
+            <p>285 Wilson street, Kampala, Uganda</p>
+
+            <h5>Phone</h5>
+            <p>+256 705. 913. 861</p>
+
+            <h5>Fax</h5>
+            <p>+256 705. 913. 861</p>
+
+            <h5>Email</h5>
+            <p class="mb-0">macnoble306@gmail.com</p>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="col-12 col-md-8">
+          <div class="contact-form">
+            <!-- Section Heading -->
+            <div class="section-heading">
+              <h2>Get In Touch</h2>
+              <div class="line"></div>
+            </div>
+            <!-- Form -->
+            <form action="{% url 'contact' %}" method="post">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-lg-6">
+                  <input type="text" name="message-name" class="form-control mb-30" placeholder="Your Name">
+                </div>
+                <div class="col-lg-6">
+                  <input type="email" name="message-email" class="form-control mb-30" placeholder="Your Email">
+                </div>
+                <div class="col-12">
+                  <textarea name="message" class="form-control mb-30" placeholder="Your Message"></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn dento-btn">Send Message</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+  <!-- ***** Contact Area End ***** -->
+
+{% endblock %}
